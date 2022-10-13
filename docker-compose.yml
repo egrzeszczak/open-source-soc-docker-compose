@@ -133,7 +133,7 @@ services:
       - 12201:12201/udp
     volumes:
       - graylog_data:/usr/share/graylog/data
-      # - ./config/graylog:/usr/share/graylog/data/config # ERRORSOURCE: chown problems https://github.com/Graylog2/graylog-docker/issues/76
+      - ./config/graylog/:/usr/share/graylog/data/config
 
   graylog.mongo:
     image: egrzeszczak/graylog-mongo
