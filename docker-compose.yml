@@ -116,6 +116,7 @@ services:
     entrypoint: /usr/bin/tini -- wait-for-it wazuh.indexer:9200 --  /docker-entrypoint.sh
     networks:
       - security
+      - graylog
     restart: always
     depends_on:
       - graylog.mongo
@@ -141,7 +142,7 @@ services:
       context: .
       dockerfile: build/graylog/mongo/Dockerfile
     networks:
-      - security
+      - graylog
     volumes:
       - graylog_mongo:/data/db
 
@@ -167,3 +168,8 @@ networks:
     ipam:
       config:
         - subnet: 192.168.250.0/24
+  graylog:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.249.0/24
