@@ -111,6 +111,7 @@ services:
       - GRAYLOG_ELASTICSEARCH_VERSION=7.10.2
       - GRAYLOG_ELASTICSEARCH_HOSTS=https://graylog:Graylog@wazuh.indexer:9200
       - GRAYLOG_HTTP_EXTERNAL_URI=http://127.0.0.1:9000/
+      - GRAYLOG_HTTP_BIND_ADDRESS=0.0.0.0:9000
       - GRAYLOG_MONGODB_URI=mongodb://graylog.mongo/graylog
       - GRAYLOG_SERVER_JAVA_OPTS=$GRAYLOG_SERVER_JAVA_OPTS -Dlog4j2.formatMsgNoLookups=true -Djavax.net.ssl.trustStore=/usr/share/graylog/ssl/cacerts -Djavax.net.ssl.trustStorePassword=changeit
     entrypoint: /usr/bin/tini -- wait-for-it wazuh.indexer:9200 --  /docker-entrypoint.sh
