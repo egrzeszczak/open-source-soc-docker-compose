@@ -41,7 +41,10 @@ services:
   #     - ./config/wazuh/wazuh_manager/wazuh_manager.conf:/wazuh-config-mount/etc/ossec.conf
 
   wazuh.indexer:
-    image: wazuh/wazuh-indexer:4.3.8
+    image: egrzeszczak/wazuh-indexer
+    build:
+      context: .
+      dockerfile: build/wazuh/wazuh-indexer/Dockerfile
     hostname: wazuh.indexer
     restart: always
     networks:
@@ -68,7 +71,10 @@ services:
       - ./config/wazuh/wazuh_indexer/internal_users.yml:/usr/share/wazuh-indexer/plugins/opensearch-security/securityconfig/internal_users.yml
 
   wazuh.dashboard:
-    image: wazuh/wazuh-dashboard:4.3.8
+    image: egrzeszczak/wazuh-dashboard
+    build:
+      context: .
+      dockerfile: build/wazuh/wazuh-dashboard/Dockerfile
     hostname: wazuh.dashboard
     restart: always
     networks:
@@ -95,7 +101,7 @@ services:
 
 
   graylog:
-    image: egrzeszczak/graylog:4.3-jre11
+    image: egrzeszczak/graylog
     build:
       context: .
       dockerfile: build/graylog/Dockerfile
@@ -130,7 +136,10 @@ services:
       # - ./config/graylog:/usr/share/graylog/data/config # ERRORSOURCE: chown problems https://github.com/Graylog2/graylog-docker/issues/76
 
   graylog.mongo:
-    image: mongo:4.2
+    image: egrzeszczak/graylog-mongo
+    build:
+      context: .
+      dockerfile: build/graylog/mongo/Dockerfile
     networks:
       - security
     volumes:

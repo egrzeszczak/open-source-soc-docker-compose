@@ -1,0 +1,1 @@
+FROM wazuh/wazuh-indexer:4.3.8

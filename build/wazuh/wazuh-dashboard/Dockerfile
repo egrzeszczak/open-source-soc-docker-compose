@@ -1,0 +1,1 @@
+FROM wazuh/wazuh-dashboard:4.3.8
