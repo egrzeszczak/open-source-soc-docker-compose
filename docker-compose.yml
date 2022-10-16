@@ -42,6 +42,7 @@ services:
       - ./ssl/wazuh/wazuh.manager.pem:/etc/ssl/filebeat.pem
       - ./ssl/wazuh/wazuh.manager-key.pem:/etc/ssl/filebeat.key
       - ./config/wazuh/wazuh_manager/wazuh_manager.conf:/wazuh-config-mount/etc/ossec.conf
+      - ./config/wazuh/wazuh_manager/filebeat/filebeat.yml:/etc/filebeat/filebeat.yml
 
   wazuh.indexer:
     image: egrzeszczak/wazuh-indexer
@@ -100,7 +101,7 @@ services:
       - wazuh.indexer
     links:
       - wazuh.indexer:wazuh.indexer
-      # - wazuh.manager:wazuh.manager
+      - wazuh.manager:wazuh.manager
 
 
   graylog:
